@@ -158,8 +158,8 @@ public class RedisLockServiceImpl implements RedisLockService {
         RSemaphore park = redission.getSemaphore("park");
         boolean b = false;
         try {
-//            park.acquire(5);
-            b = park.tryAcquire(10);
+            park.acquire(5);
+//            b = park.tryAcquire(10);
 
         } catch (Exception e) {
 
