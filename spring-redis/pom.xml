@@ -35,7 +35,13 @@
         <dependency>
             <groupId>com.wzz.gulimall.common</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>2.3.7.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
