@@ -4,7 +4,7 @@
 <mapper namespace="com.wzz.redis.dao.PmsCategoryDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.wzz.redis.entity.PmsCategoryEntity" id="pmsCategoryMap">
+    <resultMap type="com.wzz.redis.entity.PmsCategoryEntity" id="baseMap">
         <result property="catId" column="cat_id"/>
         <result property="name" column="name"/>
         <result property="parentCid" column="parent_cid"/>
@@ -14,16 +14,47 @@
         <result property="icon" column="icon"/>
         <result property="productUnit" column="product_unit"/>
         <result property="productCount" column="product_count"/>
+        <collection property="users" ofType="com.wzz.redis.entity.User">
+            <id property="uid" column="uid"/>
+            <result property="pid" column="pid"/>
+            <result property="uname" column="name"/>
+            <result property="nickName" column="na"/>
+            <result property="sex" column="sex"/>
+        </collection>
     </resultMap>
-    <select id="getInfoByParms" resultType="com.wzz.redis.entity.PmsCategoryEntity"
-            parameterType="java.util.Map" resultMap="pmsCategoryMap">
-            SELECT
-            	*
-            FROM
-            	pms_category
-            	LIMIT #{params.page},#{params.pageSize}
 
+    <select id="getPmsAndUser" resultType="com.wzz.redis.entity.PmsCategoryEntity" resultMap="baseMap">
+        SELECT
+        <include refid="baseFiled"></include>,
+        u.`name` as uname,
+        u.nickName as na,
+        u.sex
+        FROM
+        pms_category p
+        RIGHT JOIN USER u
+        on p.cat_id = u.pid
     </select>
 
+    <sql id="baseFiled">
+        	p.`cat_id`,
+	        p.`name`,
+	        p.`parent_cid`,
+	        p.`cat_level`,
+	        p.`show_status`,
+	        p.`sort`,
+	        p.`icon`,
+	        p.`product_unit`,
+	        p.`product_count`
+    </sql>
+
+    <select id="getInfoByParms" resultType="com.wzz.redis.entity.PmsCategoryEntity"
+            parameterType="java.util.Map" resultMap="baseMap">
+        SELECT
+        <include refid="baseFiled"></include>
+        FROM
+        pms_category
+        LIMIT #{params.page},#{params.pageSize}
+
+    </select>
 
 </mapper>

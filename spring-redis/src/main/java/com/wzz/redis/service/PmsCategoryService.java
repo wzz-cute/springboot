@@ -21,5 +21,7 @@ public interface PmsCategoryService extends IService<PmsCategoryEntity> {
     List<PmsCategoryEntity> getInfoByParms(Map<String, Object> params);
 
     List<PmsCategoryEntity> getData();
+
+    List<PmsCategoryEntity> getPmsAndUser();
 }
 

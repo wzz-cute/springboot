@@ -37,6 +37,12 @@ public class PmsCategoryController {
         return R.ok().put("page", page);
     }
 
+    @RequestMapping("/getPmsAndUser")
+    public R getPmsAndUser(){
+        List<PmsCategoryEntity> pmsCategoryEntities =  pmsCategoryService.getPmsAndUser();
+        return new R().put("data",pmsCategoryEntities);
+    }
+
 
     /**
      * 信息

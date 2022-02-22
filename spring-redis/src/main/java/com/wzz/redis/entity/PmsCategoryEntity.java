@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 商品三级分类
@@ -17,6 +18,9 @@ import java.io.Serializable;
 @TableName("pms_category")
 public class PmsCategoryEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+
+    private List<User> users;
 
 	/**
 	 * 分类id
@@ -55,5 +59,4 @@ public class PmsCategoryEntity implements Serializable {
 	 * 商品数量
 	 */
 	private Integer productCount;
-
 }

@@ -59,4 +59,9 @@ public class PmsCategoryServiceImpl extends ServiceImpl<PmsCategoryDao, PmsCateg
         return pmsCategoryDao.getInfoByParms(parse);
     }
 
+    @Override
+    public List<PmsCategoryEntity> getPmsAndUser() {
+        return pmsCategoryDao.getPmsAndUser();
+    }
+
 }

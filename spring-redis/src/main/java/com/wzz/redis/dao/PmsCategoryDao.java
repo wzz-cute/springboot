@@ -19,4 +19,6 @@ import java.util.Map;
 public interface PmsCategoryDao extends BaseMapper<PmsCategoryEntity> {
 
     List<PmsCategoryEntity> getInfoByParms(@Param("params") Map<String, Object> params);
+
+    List<PmsCategoryEntity> getPmsAndUser();
 }
