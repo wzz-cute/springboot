@@ -2,16 +2,21 @@ package com.wzz.offer.excel.listener;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.alibaba.fastjson.JSON;
 import com.wzz.offer.category.entity.CategoryEntity;
 import com.wzz.offer.category.service.CategoryService;
 import org.apache.commons.lang.StringUtils;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -22,12 +27,13 @@ import java.util.List;
 public class DemoListener extends AnalysisEventListener<CategoryEntity> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DemoListener.class);
+    ExecutorService executor = Executors.newFixedThreadPool(20);
 
 
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
-    private static final int BATCH_COUNT = 10;
+    private static final int BATCH_COUNT = 100;
 
     List<CategoryEntity> list = new ArrayList<CategoryEntity>();
 
@@ -57,16 +63,17 @@ public class DemoListener extends AnalysisEventListener<CategoryEntity> {
      */
     @Override
     public void invoke(CategoryEntity data, AnalysisContext context) {
-        if (isAllNull(data) && data.getCatId() != null) {
-            System.out.println("解析到一条数据:" + JSON.toJSONString(data));
-            list.add(data);
-        }
+//        if (!isAllNull(data)) {
+//            System.out.println("解析到一条数据:" + JSON.toJSONString(data));
+        list.add(data);
+//        }
         // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM
-        if (list.size() >= BATCH_COUNT) {
+        if (list.size() == BATCH_COUNT) {
             saveData();
             // 存储完成清理 list
             list.clear();
         }
+
     }
 
     /**
@@ -85,8 +92,67 @@ public class DemoListener extends AnalysisEventListener<CategoryEntity> {
      */
     private void saveData() {
         //进行数据库层面操作
-        System.out.println(JSON.toJSONString(list));
-        categoryService.saveBatch(list);
+        String savePath = "C:\\Users\\86180\\Desktop\\内鬼数据.txt";
+
+        /**
+         * 没有线程池
+         * Fri Mar 11 14:12:53 CST 2022
+         * Fri Mar 11 14:13:43 CST 2022
+         */
+//            for (CategoryEntity categoryEntity : list) {
+//                BufferedWriter bufferedWriter = null;
+//                try {
+//                    bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(savePath, true)));
+//                    synchronized (CategoryEntity.class) {
+////                                    System.out.println(Thread.currentThread().getId() + "  " + Thread.currentThread().getName());
+//                        String s = categoryEntity.toString();
+////                                    System.out.println(s);
+//                        bufferedWriter.write(s);
+//                        bufferedWriter.write("\r\n");
+//                        bufferedWriter.flush();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    if (bufferedWriter != null) {
+//                        try {
+//                            bufferedWriter.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+
+        for (CategoryEntity categoryEntity : list) {
+            executor.submit(new Runnable() {
+                @Override
+                public void run() {
+                    BufferedWriter bufferedWriter = null;
+                    try {
+                        bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(savePath, true)));
+//                        synchronized (CategoryEntity.class) {
+//                                    System.out.println(Thread.currentThread().getId() + "  " + Thread.currentThread().getName());
+                        String s = categoryEntity.toString();
+//                                    System.out.println(s);
+                        bufferedWriter.write(s);
+                        bufferedWriter.write("\r\n");
+                        bufferedWriter.flush();
+//                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (bufferedWriter != null) {
+                            try {
+                                bufferedWriter.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+        }
     }
 
     private boolean isAllNull(CategoryEntity t) {

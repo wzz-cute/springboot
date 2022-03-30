@@ -3,10 +3,9 @@ package com.wzz.offer.category.entity;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
-
-import lombok.Data;
 
 /**
  * 商品三级分类
@@ -67,4 +66,18 @@ public class CategoryEntity implements Serializable {
     @ExcelProperty(value = "商品数量", index = 8)
     private Integer productCount;
 
+    @Override
+    public String toString() {
+        return "CategoryEntity{" +
+                "catId=" + catId +
+                ", name='" + name + '\'' +
+                ", parentCid=" + parentCid +
+                ", catLevel=" + catLevel +
+                ", showStatus=" + showStatus +
+                ", sort=" + sort +
+                ", icon='" + icon + '\'' +
+                ", productUnit='" + productUnit + '\'' +
+                ", productCount=" + productCount +
+                '}';
+    }
 }

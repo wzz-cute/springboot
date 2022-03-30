@@ -46,6 +46,8 @@ public class EsayExcelController {
             System.out.println("请上传xlsx格式文件");
         }
         DemoListener demoListener = new DemoListener(categoryService);
+        System.out.println(new Date());
         EasyExcel.read(file.getInputStream(), CategoryEntity.class, demoListener).sheet().doRead();
+        System.out.println(new Date());
     }
 }

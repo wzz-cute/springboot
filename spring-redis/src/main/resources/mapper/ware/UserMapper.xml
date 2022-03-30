@@ -11,6 +11,49 @@
     <sql id="baseFiled">
         `uid`, `pid`, `name`, `sex`, `nickName`
     </sql>
+
+
+    <update id="modifyUser">
+        UPDATE `test`.`user` SET
+        <if test="uname !=null and uname != '' ">
+            `name` = #{uname}
+        </if>
+        <if test="sex !=null and sex != '' ">
+            `sex` = #{sex}
+        </if>
+        <if test="nickName !=null and nickName != '' ">
+            `nickName` = #{nickName}
+        </if>
+        WHERE
+        1=1 AND
+        <if test="uids != null">
+            `uid` in(
+            <foreach collection="uids" item="uid" separator=",">
+                #{uid}
+            </foreach>
+            )
+        </if>
+
+    </update>
+    <delete id="delUser">
+        DELETE FROM test.user
+        WHERE
+        1=1 AND
+
+        <if test="uid != null and uid != '' ">
+            uid = #{uid}
+        </if>
+
+        <if test="uids != null">
+            uid in
+            <foreach collection="uids" item="uid" separator="," open="(" close=")">
+                #{uid}
+            </foreach>
+
+        </if>
+    </delete>
+
+
     <select id="getAllUser" resultType="com.wzz.redis.entity.User" resultMap="baseMap">
         select <include refid="baseFiled"></include> from user
     </select>

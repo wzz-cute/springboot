@@ -2,7 +2,6 @@ package com.wzz.redis.service;
 
 import java.util.List;
 
-import com.wzz.gulimall.common.utils.R;
 import com.wzz.redis.entity.User;
 
 /**
@@ -25,4 +24,8 @@ public interface UserService {
     public User findById(long id);
 
     List<User> getAllUser();
+
+    Integer modifyUser(User user);
+
+    Integer delUser(User user);
 }

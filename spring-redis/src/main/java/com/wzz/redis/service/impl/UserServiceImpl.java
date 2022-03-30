@@ -7,7 +7,6 @@ import com.wzz.redis.dao.UserMapper;
 import com.wzz.redis.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -48,6 +47,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<User> getAllUser() {
         return userMapper.getAllUser();
+    }
+
+    @Override
+    public Integer modifyUser(User user) {
+        return userMapper.modifyUser(user);
+    }
+
+    @Override
+    public Integer delUser(User user) {
+        return userMapper.delUser(user);
     }
 
     @Override

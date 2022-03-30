@@ -18,4 +18,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User>{
     List<User> getAllUser();
+
+    Integer modifyUser(User user);
+
+    Integer delUser(User user);
 }
