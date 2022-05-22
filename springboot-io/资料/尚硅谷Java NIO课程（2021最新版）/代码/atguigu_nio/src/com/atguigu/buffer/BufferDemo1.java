@@ -1,6 +1,6 @@
 package com.atguigu.buffer;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

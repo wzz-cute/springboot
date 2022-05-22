@@ -2,7 +2,7 @@ package com.wzz.mongo;
 
 import com.alibaba.fastjson.JSONObject;
 import com.wzz.mongo.entity.Xiyou;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

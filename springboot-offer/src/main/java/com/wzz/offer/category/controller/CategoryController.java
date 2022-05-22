@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.wzz.gulimall.common.utils.R;
 import com.wzz.offer.category.entity.CategoryEntity;
 import com.wzz.offer.category.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.wzz.gulimall.common.utils.PageUtils;
-import com.wzz.gulimall.common.utils.R;
-
 
 
 /**

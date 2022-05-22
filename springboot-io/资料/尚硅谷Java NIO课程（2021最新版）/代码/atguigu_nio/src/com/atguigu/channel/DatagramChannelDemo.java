@@ -1,6 +1,6 @@
 package com.atguigu.channel;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import sun.awt.windows.WBufferStrategy;
 
 import java.io.IOException;

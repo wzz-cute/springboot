@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: springboot-redis
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.79.131:8848
+      config:
+        server-addr: 192.168.79.131:8848
+        namespace: a835cff2-2356-45ad-838f-d2e617ca48bc
+        ext-config[0]:
+          data-id: base.yml
+          refresh: true
+        ext-config[1]:
+          data-id: redis-pro.properties
+          refresh: true
+server:
+  port: 7000
+  servlet:
+    context-path: /springboot-redis

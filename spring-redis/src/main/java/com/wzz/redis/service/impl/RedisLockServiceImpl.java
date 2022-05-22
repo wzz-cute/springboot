@@ -5,10 +5,8 @@ import com.wzz.redis.entity.PmsCategoryEntity;
 import com.wzz.redis.service.PmsCategoryService;
 import com.wzz.redis.service.RedisLockService;
 import org.redisson.api.*;
-import org.redisson.client.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,5 @@
 package com.wzz.redis.controller;
 
-import com.wzz.gulimall.common.utils.PageUtils;
 import com.wzz.gulimall.common.utils.R;
 import com.wzz.redis.entity.PmsCategoryEntity;
 import com.wzz.redis.service.PmsCategoryService;
