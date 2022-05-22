@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.79.131:3306/gulimall_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: springboot-es
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.79.131:8848
+      config:
+        server-addr: 192.168.79.131:8848
+        namespace: e47cde14-c396-48b0-b4d4-bec001b97103
+        ext-config[0]:
+          data-id: datasource.yml
+          refresh: true
+        ext-config[1]:
+          data-id: esProperties.properties
+          refresh: true
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+server:
+  port: 9000
+  servlet:
+    context-path: /springboot-es

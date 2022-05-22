@@ -1,0 +1,146 @@
+spring:
+  application:
+    name: springboot-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: baidu-routes #路由名称 唯一id
+          uri: https://baike.baidu.com/ #匹配成功后跳转的位置 加lb是路由到自己服务的,向注册中心中找
+          predicates: #路由条件，如果有百度的话就匹配成功 将/baidu/**全部匹配到www.baidu.com后面
+                      #Predicate 接受一个输入参数，返回一个布尔值结果。
+                      #输入http://localhost:88/item/朱婧汐/18637115?fr=aladdin
+                      #转到https://baike.baidu.com/item/朱婧汐?fr=aladdin
+            - Path=/item/**
+
+        - id: qq-routes  #路由id，唯一
+          uri: https://www.qq.com/  #目标URI，路由到微服务的地址
+          predicates:           #断言（判断条件）
+                              #输入http://localhost:88/?name=qq
+                              #跳转https://www.qq.com/
+                              #如果输入http://localhost:88/baidu?name=qq
+                              #跳转https://www.qq.com//baidu  404
+            - Query=name,qq    #匹配对应的URL请求，将匹配到的请求追加在目标URI之后 必学结合key，value
+
+        - id: 360-routes
+          uri: https://hao.360.com/
+          predicates: #根据请求方式 如果请求有后面的地址 也会写带到后面 如要测试使用postman
+            - Method=Post
+        #还有时间 ip地址 请求头形式请看 https://blog.csdn.net/xuan_lu/article/details/120516188
+        - id: pic-routes
+          uri: https://image.baidu.com/
+          predicates:
+            - Path=/pic/**
+          filters: #此处将pic过滤掉 相当于去掉 然后将剩下的放到请求路径后面
+                  #输入 https://localhost:88/pic/search/index?tn=baiduimage&word=朱婧汐
+                  #转发到  https://image.baidu.com/search/index?tn=baiduimage&word=朱婧汐
+            - RewritePath=/pic/(?<segment>/?.*),/$\{segment}
+
+
+        - id: redis-routes
+          uri: lb://springboot-redis
+          predicates:
+            - Path=/redis/springboot-redis/**
+          filters:
+            - RewritePath=/redis/(?<segment>/?.*),/$\{segment}
+
+        - id: aop-routes
+          uri: lb://springboot-aop
+          predicates:
+            - Path=/aop/springboot-aop/**
+          filters:
+            - RewritePath=/aop/(?<segment>/?.*),/$\{segment}
+
+        - id: es-routes
+          uri: lb://springboot-es
+          predicates:
+            - Path=/es/springboot-es/**
+          filters:
+            - RewritePath=/es/(?<segment>/?.*),/$\{segment}
+
+        - id: io-routes
+          uri: lb://springboot-io
+          predicates:
+            - Path=/io/springboot-io/**
+          filters:
+            - RewritePath=/io/(?<segment>/?.*),/$\{segment}
+
+        - id: juc-routes
+          uri: lb://springboot-juc
+          predicates:
+            - Path=/juc/springboot-juc/**
+          filters:
+            - RewritePath=/juc/(?<segment>/?.*),/$\{segment}
+
+        - id: mongo-routes
+          uri: lb://springboot-mongo
+          predicates:
+            - Path=/mongo/springboot-mongo/**
+          filters:
+            - RewritePath=/mongo/(?<segment>/?.*),/$\{segment}
+
+        - id: rabbitmq-routes
+          uri: lb://springboot-rabbitmq
+          predicates:
+            - Path=/rabbitmq/springboot-rabbitmq/**
+          filters:
+            - RewritePath=/rabbitmq/(?<segment>/?.*),/$\{segment}
+
+        - id: offer-routes
+          uri: lb://springboot-offer
+          predicates:
+            - Path=/offer/springboot-offer/**
+          filters:
+            - RewritePath=/offer/(?<segment>/?.*),/$\{segment}
+
+
+        - id: cloud-routes
+          uri: lb://springboot-redis
+          predicates:
+            - Host=springcloudwzz.com
+
+        - id: redis-cloud-routes
+          uri: lb://springboot-redis
+          predicates:
+            - Host=rediscloud.com
+
+        - id: aop-cloud-routes
+          uri: lb://springboot-aop
+          predicates:
+            - Host=aopcloud.com
+
+        - id: es-cloud-routes
+          uri: lb://springboot-es
+          predicates:
+            - Host=escloud.com
+
+        - id: io-cloud-routes
+          uri: lb://springboot-io
+          predicates:
+            - Host=iocloud.com
+
+        - id: juc-cloud-routes
+          uri: lb://springboot-juc
+          predicates:
+            - Host=juccloud.com
+
+        - id: mongo-cloud-routes
+          uri: lb://springboot-mongo
+          predicates:
+            - Host=mongocloud.com
+
+        - id: mq-cloud-routes
+          uri: lb://springboot-rabbitmq
+          predicates:
+            - Host=mqcloud.com
+
+        - id: offer-cloud-routes
+          uri: lb://springboot-offer
+          predicates:
+            - Host=offercloud.com
+
+#        - id: host-routes
+#          uri: https://www.oschina.net/
+#          predicates:
+#            - Host=wzz.com,wzz.baidu.com
+
+

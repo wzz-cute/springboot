@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springboot-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.79.131:8848
+
+server:
+  port: 88
