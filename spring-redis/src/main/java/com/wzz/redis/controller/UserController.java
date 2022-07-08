@@ -1,7 +1,7 @@
 package com.wzz.redis.controller;
 
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import com.wzz.redis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

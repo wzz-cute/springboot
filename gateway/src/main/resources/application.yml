@@ -92,6 +92,19 @@ spring:
           filters:
             - RewritePath=/offer/(?<segment>/?.*),/$\{segment}
 
+        - id: auth-routes
+          uri: lb://auth-server
+          predicates:
+            - Path=/auth/auth-server/**
+          filters:
+            - RewritePath=/auth/(?<segment>/?.*),/$\{segment}
+
+        - id: acl-routes
+          uri: lb://service-acl
+          predicates:
+            - Path=/guli/acl/**
+          filters:
+            - RewritePath=/guli/acl/(?<segment>/?.*),/$\{segment}
 
         - id: cloud-routes
           uri: lb://springboot-redis
@@ -137,6 +150,16 @@ spring:
           uri: lb://springboot-offer
           predicates:
             - Host=offercloud.com
+
+        - id: auth-cloud-routes
+          uri: lb://auth-server
+          predicates:
+            - Host=authcloud.com
+
+        - id: acl-cloud-routes
+          uri: lb://service-acl
+          predicates:
+            - Host=acl.com
 
 #        - id: host-routes
 #          uri: https://www.oschina.net/

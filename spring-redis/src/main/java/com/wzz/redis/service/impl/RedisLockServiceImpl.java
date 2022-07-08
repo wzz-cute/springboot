@@ -1,6 +1,6 @@
 package com.wzz.redis.service.impl;
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import com.wzz.redis.entity.PmsCategoryEntity;
 import com.wzz.redis.service.PmsCategoryService;
 import com.wzz.redis.service.RedisLockService;

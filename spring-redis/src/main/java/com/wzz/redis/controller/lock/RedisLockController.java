@@ -1,6 +1,6 @@
 package com.wzz.redis.controller.lock;
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import com.wzz.redis.service.RedisLockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

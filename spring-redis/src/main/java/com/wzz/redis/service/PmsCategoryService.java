@@ -1,7 +1,7 @@
 package com.wzz.redis.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wzz.gulimall.common.utils.PageUtils;
+import com.wzz.util.PageUtils;
 import com.wzz.redis.entity.PmsCategoryEntity;
 
 import java.util.List;

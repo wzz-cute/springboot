@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: auth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.79.131:8848
+      config:
+        server-addr: 192.168.79.131:8848
+        namespace: 29c3ec10-2c33-42c5-bff6-c6e4ac96be67
+        ext-config[0]:
+          data-id: datasource.yml
+          refresh: true
+server:
+  port: 5000
+  servlet:
+    context-path: /auth-server

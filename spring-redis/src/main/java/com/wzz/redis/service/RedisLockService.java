@@ -1,6 +1,6 @@
 package com.wzz.redis.service;
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 
 public interface RedisLockService {
     /**

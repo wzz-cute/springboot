@@ -3,22 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.wzz</groupId>
+        <artifactId>springboot-fater</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <!--    <relativePath/>-->
     </parent>
-
-    <!--    <properties>-->
-    <!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-    <!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-    <!--        <java.version>1.8</java.version>-->
-    <!--        <jackson-databind-version>2.9.4</jackson-databind-version>-->
-    <!--        <druid.version>1.1.2</druid.version>-->
-    <!--        <mysql-connector.version>8.0.7-dmr</mysql-connector.version>-->
-    <!--        <mybatis-plus.version>2.1.8</mybatis-plus.version>-->
-    <!--        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>-->
-    <!--    </properties>-->
+    <packaging>jar</packaging>
 
     <groupId>com.wzz.redis</groupId>
     <artifactId>spring-redis</artifactId>
@@ -34,34 +24,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.wzz.gulimall.common</groupId>
-            <artifactId>common</artifactId>
-            <version>2.1.8.RELEASE</version>
+            <groupId>com.wzz.base</groupId>
+            <artifactId>base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.wzz.util</groupId>
+            <artifactId>util</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-
-        <!--redis springboot 整合 redis api操作-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
         <!--   使用redisson实现分布式锁，分布式对象等功能框架     -->
         <dependency>
             <groupId>org.redisson</groupId>
@@ -80,21 +52,6 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.session</groupId>-->
-        <!--            <artifactId>spring-session-data-redis</artifactId>-->
-        <!--        </dependency>-->
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.3.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 

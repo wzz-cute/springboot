@@ -1,7 +1,7 @@
 package com.wzz.redis.controller.redis;
 
 import com.alibaba.fastjson.JSON;
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import com.wzz.redis.entity.PmsCategoryEntity;
 import com.wzz.redis.service.PmsCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
