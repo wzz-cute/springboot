@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.wzz.es.config.ElasticSearchConfig;
 import com.wzz.es.constant.EsConstant;
 import com.wzz.es.service.ProductSaveService;
-import com.wzz.gulimall.common.es.SkuEsModel;
+import com.wzz.util.es.SkuEsModel;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;

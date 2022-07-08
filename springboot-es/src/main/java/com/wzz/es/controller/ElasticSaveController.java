@@ -1,8 +1,8 @@
 package com.wzz.es.controller;
 
 import com.wzz.es.service.ProductSaveService;
-import com.wzz.gulimall.common.es.SkuEsModel;
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.es.SkuEsModel;
+import com.wzz.util.result.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -3,7 +3,7 @@ package com.wzz.es;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wzz.es.config.ElasticSearchConfig;
-import com.wzz.gulimall.common.utils.Query;
+import com.wzz.util.Query;
 import lombok.Data;
 import lombok.ToString;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -26,6 +26,8 @@ import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.FuzzyQueryBuilder;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -90,7 +92,7 @@ public class Test {
 //                        .must(QueryBuilders.matchQuery("address","mill lane"))//并且address包含mill
 ////                                                                .mustNot(QueryBuilders.matchQuery("first_name","Forbes")) //不一定包含
 //
-////                                                                .should(QueryBuilders.matchQuery("age", 20))//可能包含
+////                                                                .should(QueryBuilders.matchQuery("age", 20))//可能包含 OR
 ////                                                                .should(QueryBuilders.matchQuery("age", 22))
 //        ));
 
@@ -98,7 +100,26 @@ public class Test {
 //        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.rangeQuery("age").gte(15).lte(30)));
 
         //模糊查询
-//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.fuzzyQuery("email", "amber").fuzziness(Fuzziness.AUTO)));
+
+        //范围查询
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.rangeQuery("age").from("12").to("20")));//闭区间
+        //开区间
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.rangeQuery("age").from("12", false).to("20", false)));
+
+        //小于
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.rangeQuery("age").lt("12")));
+        //小于等于
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.rangeQuery("age").lte("12")));
+
+        //模糊查询
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.wildcardQuery("lastname","*du*")));
+
+        //正则查询
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.regexpQuery("lastname","".toLowerCase())));
+
+        //多个字段模糊查询
+//        searchRequest.source(new SearchSourceBuilder().query(QueryBuilders.multiMatchQuery("Adams","lastname","firstname")));
+
 
         //加上分页
 //        searchRequest.source(new SearchSourceBuilder().from(0).size(30));

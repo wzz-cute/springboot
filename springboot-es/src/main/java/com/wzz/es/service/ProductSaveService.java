@@ -1,6 +1,6 @@
 package com.wzz.es.service;
 
-import com.wzz.gulimall.common.es.SkuEsModel;
+import com.wzz.util.es.SkuEsModel;
 
 import java.io.IOException;
 import java.util.List;

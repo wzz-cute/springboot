@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzz.auth.mapper.UserMapper">
+    
+    <resultMap type="com.wzz.auth.entity.User" id="UserResult">
+        <result property="id"    column="id"    />
+        <result property="password"    column="password"    />
+        <result property="salt"    column="salt"    />
+    </resultMap>
+
+    <sql id="selectUserVo">
+        select id, user_name, user_nick_name, password, salt, email, phone, create_user_id, create_time from spring_user
+    </sql>
+
+    <select id="selectUserList" parameterType="com.wzz.auth.entity.User" resultMap="UserResult">
+        <include refid="selectUserVo"/>
+        <where>  
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userNickName != null  and userNickName != ''"> and user_nick_name like concat('%', #{userNickName}, '%')</if>
+            <if test="password != null  and password != ''"> and password = #{password}</if>
+            <if test="salt != null  and salt != ''"> and salt = #{salt}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="phone != null  and phone != ''"> and phone = #{phone}</if>
+            <if test="createUserId != null  and createUserId != ''"> and create_user_id = #{createUserId}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserById" parameterType="String" resultMap="UserResult">
+        <include refid="selectUserVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertUser" parameterType="com.wzz.auth.entity.User">
+        insert into spring_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userName != null and userName != ''">user_name,</if>
+            <if test="userNickName != null and userNickName != ''">user_nick_name,</if>
+            <if test="password != null and password != ''">password,</if>
+            <if test="salt != null">salt,</if>
+            <if test="email != null">email,</if>
+            <if test="phone != null">phone,</if>
+            <if test="createUserId != null">create_user_id,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userName != null and userName != ''">#{userName},</if>
+            <if test="userNickName != null and userNickName != ''">#{userNickName},</if>
+            <if test="password != null and password != ''">#{password},</if>
+            <if test="salt != null">#{salt},</if>
+            <if test="email != null">#{email},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="createUserId != null">#{createUserId},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUser" parameterType="com.wzz.auth.entity.User">
+        update spring_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userName != null and userName != ''">user_name = #{userName},</if>
+            <if test="userNickName != null and userNickName != ''">user_nick_name = #{userNickName},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="salt != null">salt = #{salt},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="createUserId != null">create_user_id = #{createUserId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="String">
+        delete from spring_user where id = #{id}
+    </delete>
+
+    <delete id="deleteUserByIds" parameterType="String">
+        delete from spring_user where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

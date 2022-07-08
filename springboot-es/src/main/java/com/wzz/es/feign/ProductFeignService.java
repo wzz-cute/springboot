@@ -1,6 +1,6 @@
 package com.wzz.es.feign;
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

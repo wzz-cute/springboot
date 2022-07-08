@@ -53,7 +53,7 @@ class SpringbootRabbitmqApplicationTests {
 //        new TopicExchange()
 //        new HeadersExchange()
 //        new FanoutExchange()
-        amqpAdmin.declareExchange(directExchange);
+//        amqpAdmin.declareExchange(directExchange);
         amqpAdmin.declareExchange(directExchange);
     }
 
@@ -62,25 +62,12 @@ class SpringbootRabbitmqApplicationTests {
 //        Queue(String name, boolean durable, boolean exclusive, boolean autoDelete,
 //        @Nullable Map<String, Object> arguments)
 
-        Map<String, Object> arguments = new HashMap<>();
-        arguments.put("x-message-ttl", 60000);
         Queue queue = new Queue("hello-java-queue", true, false, false);
         amqpAdmin.declareQueue(queue);
     }
 
     @Test
     public void createQueue2() {
-//        Queue(String name, boolean durable, boolean exclusive, boolean autoDelete,
-//        @Nullable Map<String, Object> arguments)
-
-        Map<String, Object> arguments = new HashMap<>();
-        arguments.put("x-message-ttl", 60000);
-        Queue queue = new Queue("hello-java-queue2", true, false, false, arguments);
-        amqpAdmin.declareQueue(queue);
-    }
-
-    @Test
-    public void createQueue3() {
 //        Queue(String name, boolean durable, boolean exclusive, boolean autoDelete,
 //        @Nullable Map<String, Object> arguments)
 

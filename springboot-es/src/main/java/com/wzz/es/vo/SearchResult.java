@@ -1,6 +1,6 @@
 package com.wzz.es.vo;
 
-import com.wzz.gulimall.common.es.SkuEsModel;
+import com.wzz.util.es.SkuEsModel;
 import lombok.Data;
 
 import java.util.List;

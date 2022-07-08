@@ -6,20 +6,20 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.apache.tools.ant.util.StringUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class BaiduSearchPicDownload {
 
@@ -29,7 +29,7 @@ public class BaiduSearchPicDownload {
     @Test
     public void main() throws InterruptedException {
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
-        String searchName = "许嵩";
+        String searchName = "本兮";
 
 
         Integer pn = 0;

@@ -6,6 +6,5 @@ spring:
       discovery:
         server-addr: 192.168.79.131:8848
 server:
-  port: 13000
   servlet:
     context-path: /springboot-rabbitmq

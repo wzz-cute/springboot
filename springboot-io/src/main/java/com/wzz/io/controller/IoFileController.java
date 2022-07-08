@@ -1,6 +1,6 @@
 package com.wzz.io.controller;
 
-import com.wzz.gulimall.common.utils.R;
+import com.wzz.util.result.R;
 import org.springframework.http.HttpHeaders;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;

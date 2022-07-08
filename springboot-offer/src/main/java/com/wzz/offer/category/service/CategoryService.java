@@ -1,7 +1,7 @@
 package com.wzz.offer.category.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wzz.gulimall.common.utils.PageUtils;
+import com.wzz.util.PageUtils;
 import com.wzz.offer.category.entity.CategoryEntity;
 
 import java.util.Map;
