@@ -19,12 +19,13 @@ class MainCallable {
         FutureTask task = new FutureTask(new MyCallable());
         Thread thread = new Thread(task);
 
+        thread.start();
+
         //判断是否完成任务
         System.out.println(task.isDone());
 
 //        System.out.println(task.cancel(true));
 
-        thread.start();
 
         for (int i = 0; i < 10; i++) {
             System.out.println(Thread.currentThread().getName() + "  "
@@ -32,9 +33,9 @@ class MainCallable {
         }
 
         try {
-            System.out.println(task.isDone());
             //获取任务结果
             System.out.println(task.get());
+            System.out.println(task.isDone());
         } catch (Exception e) {
             e.printStackTrace();
         }

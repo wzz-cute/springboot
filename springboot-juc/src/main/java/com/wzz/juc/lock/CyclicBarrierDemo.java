@@ -5,12 +5,12 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierDemo {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         final CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
 
         new Thread(new Runnable() {
             public void run() {
-                System.out.println(Thread.currentThread().getName()+"：准备...");
+                System.out.println(Thread.currentThread().getName() + "：准备...");
                 try {
                     cyclicBarrier.await();
                 } catch (InterruptedException e) {
@@ -18,12 +18,12 @@ public class CyclicBarrierDemo {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName()+"启动完毕："+new Date().getTime());
+                System.out.println(Thread.currentThread().getName() + "启动完毕：" + new Date().getTime());
             }
-        },"线程1").start();
+        }, "线程1").start();
         new Thread(new Runnable() {
             public void run() {
-                System.out.println(Thread.currentThread().getName()+"：准备...");
+                System.out.println(Thread.currentThread().getName() + "：准备...");
                 try {
                     cyclicBarrier.await();
                 } catch (InterruptedException e) {
@@ -31,12 +31,12 @@ public class CyclicBarrierDemo {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName()+"启动完毕："+new Date().getTime());
+                System.out.println(Thread.currentThread().getName() + "启动完毕：" + new Date().getTime());
             }
-        },"线程2").start();
+        }, "线程2").start();
         new Thread(new Runnable() {
             public void run() {
-                System.out.println(Thread.currentThread().getName()+"：准备...");
+                System.out.println(Thread.currentThread().getName() + "：准备...");
                 try {
                     cyclicBarrier.await();
                 } catch (InterruptedException e) {
@@ -44,9 +44,9 @@ public class CyclicBarrierDemo {
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName()+"启动完毕："+new Date().getTime());
+                System.out.println(Thread.currentThread().getName() + "启动完毕：" + new Date().getTime());
             }
-        },"线程3").start();
+        }, "线程3").start();
     }
 }
 

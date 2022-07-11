@@ -12,7 +12,7 @@ public class FixedThreadPool {
                 public void run() {
                     try {
                         System.out.println(index);
-                        Thread.sleep(10);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

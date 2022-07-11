@@ -7,7 +7,7 @@ import com.wzz.util.result.R;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GoodsServiceImpl implements GoodsService, MyListener<User, R> {
+public class GoodsServiceImpl implements GoodsService, MyListener<User> {
     @Override
     public R modifyUserInfo(User user) {
         System.out.println("GOODS 修改用户信息");
